@@ -1,3 +1,4 @@
+import os
 from aiohttp import web
 # from twilio.twiml.voice_response import VoiceResponse
 
@@ -21,5 +22,7 @@ async def handle(request):
 app = web.Application()
 app.router.add_get('/', handle)
 
-
-web.run_app(app, host="localhost", port=8080)
+port = os.environ.get("PORT")
+if port is not None:
+    port = int(port)
+web.run_app(app, host="http://0.0.0.0", port=port)
