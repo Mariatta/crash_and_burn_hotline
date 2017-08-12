@@ -11,10 +11,10 @@ async def handle(request):
     # By calling functions on gather, digits can be pressed during the song
     # playback *and* the menu afterwards.
     gather = response.gather(numDigits=1, timeout=10)
-    gather.play('https://www.youtube.com/watch?v=W60IPexop30CrashAndBurn.mp3')
+    gather.play('https://s3.ca-central-1.amazonaws.com/strangerelationship/Savage+Garden+-+Crash+And+Burn.mp3')
 
     # Our goodbye triggers after gather times out.
-    response.say("Thanks for calling the Crash and Burn hotline. Good bye!")
+    response.say("Thanks!")
 
     # # return str(resp)
     return web.Response(text=str(response))
