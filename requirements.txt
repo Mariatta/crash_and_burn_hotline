@@ -1,0 +1,6 @@
+aiohttp
+aiodns
+cchardet
+requests
+twilio~=6.0.0
+
