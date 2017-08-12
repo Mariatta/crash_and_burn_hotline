@@ -10,12 +10,11 @@ async def handle(request):
 
     # By calling functions on gather, digits can be pressed during the song
     # playback *and* the menu afterwards.
-    response.say("Hello ")
-    response.play('http://demo.twilio.com/hellomonkey/monkey.mp3')
+    response.play('https://s3.ca-central-1.amazonaws.com/strangerelationship/Savage+Garden+-+Crash+And+Burn.mp3')
 
     # Our goodbye triggers after gather times out.
-    # response.say("Thanks!")
-    print(response)
+    response.say("Thanks for calling!")
+
     # # return str(resp)
     return web.Response(text=str(response), content_type='application/xml')
 
