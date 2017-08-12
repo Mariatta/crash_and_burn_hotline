@@ -25,4 +25,4 @@ app.router.add_get('/', handle)
 port = os.environ.get("PORT")
 if port is not None:
     port = int(port)
-web.run_app(app, host="http://0.0.0.0", port=port)
+web.run_app(app, port=port)
