@@ -22,4 +22,4 @@ app = web.Application()
 app.router.add_get('/', handle)
 
 
-web.run_app(app, port=8080)
+web.run_app(app, host="localhost", port=8080)
