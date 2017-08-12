@@ -17,7 +17,7 @@ async def handle(request):
     # response.say("Thanks!")
     print(response)
     # # return str(resp)
-    return web.Response(text=str(response))
+    return web.Response(text=str(response), content_type='application/xml')
 
 app = web.Application()
 app.router.add_get('/', handle)
