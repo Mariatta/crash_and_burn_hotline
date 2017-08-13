@@ -28,10 +28,10 @@ async def handle(request):
     response = VoiceResponse()
     # By calling functions on gather, digits can be pressed during the song
     # playback *and* the menu afterwards.
-    city = request.GET.get("CallerCity")
-    state = request.GET.get("CallerState")
-    if city and state:
-        update_status(city, state)
+    state = request.GET.get("FromState")
+    country = request.GET.get("FromCountry")
+    if state and country:
+        update_status(state, country)
     response.play('https://s3.ca-central-1.amazonaws.com/strangerelationship/Savage+Garden+-+Crash+And+Burn.mp3')
 
     # Our goodbye triggers after gather times out.
@@ -39,9 +39,9 @@ async def handle(request):
 
     return web.Response(text=str(response), content_type='application/xml')
 
-def update_status(city, state):
+def update_status(state, country):
 
-    message = f"😊 Thanks for dialing in, caller from {city}, {state}. {random.choice(lyrics)} {random.choice(emoji)}"
+    message = f"😊 Thanks for dialing in, caller from {state}, {country}. {random.choice(lyrics)} {random.choice(emoji)}"
     if len(message) > 140:
         twitter.update_status(status=message[0:140])
     else:
