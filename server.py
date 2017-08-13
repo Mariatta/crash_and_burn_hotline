@@ -29,8 +29,7 @@ async def handle(request):
     # By calling functions on gather, digits can be pressed during the song
     # playback *and* the menu afterwards.
     state = request.GET.get("FromState")
-    if state:
-        update_status(state)
+    update_status(state)
     response.play('https://s3.ca-central-1.amazonaws.com/strangerelationship/Savage+Garden+-+Crash+And+Burn.mp3')
 
     # Our goodbye triggers after gather times out.
@@ -38,9 +37,13 @@ async def handle(request):
 
     return web.Response(text=str(response), content_type='application/xml')
 
-def update_status(state):
+def update_status(state=None):
 
-    message = f"😊 Thanks for dialing in, caller from {state}. {random.choice(lyrics)} {random.choice(emoji)}"
+    from_phrase = ""
+    if state:
+        from_phrase = ", caller from {state}"
+
+    message = f"😊 Thanks for dialing in{from_phrase}. {random.choice(lyrics)} {random.choice(emoji)}"
     if len(message) > 140:
         twitter.update_status(status=message[0:140])
     else:
