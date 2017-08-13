@@ -41,7 +41,7 @@ def update_status(state=None):
 
     from_phrase = ""
     if state:
-        from_phrase = ", caller from {state}"
+        from_phrase = f", caller from {state}"
 
     message = f"😊 Thanks for dialing in{from_phrase}. {random.choice(lyrics)} {random.choice(emoji)}"
     if len(message) > 140:
